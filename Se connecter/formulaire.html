@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<style>
+    p{
+        text-align: center;
+        font-size: 50px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+  form{
+    text-align: center;
+    padding: 10px;
+  
+    border-radius: 2px;
+  }
+  .form-group{
+    margin: 20px;
+    
+  }
+</style>
+<body>
+    <main>
+       <section >
+            <p class="text-primary "> Formulaire de Voitures</p>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <form action="exercice5.php" method="POST">
+                            <div class="form-group">
+                                <label for="m">Marque :</label>
+                                <input type="text" name="Marque" class="form-control py-2 border-black">
+                            </div>
+                            <div class="form-group">
+                                <label for="mo">Modèle :</label>
+                                <input type="text" name="Modèle" class="form-control py-2 border-black">
+                            </div>
+                            <div class="form-group">
+                                <label for="t">Type :</label>
+                                <input type="text" name="Type" class="form-control py-2 border-black">
+                            </div>
+                            <div>
+                               <LAbel>Selctionner l'affichage</LAbel><select name="format" id="">
+                                <option value="html" >HTML</option>
+                                <option value="json">jSON</option>
+                                <option value="csv">Csv</option>
+                               </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="b" name="">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+       </section>
+          
+
+
+        
+       
+    </main>
+    
+</body>
+</html>

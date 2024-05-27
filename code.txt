@@ -1,0 +1,197 @@
+ <div class="recherche">
+            <div class="d-flex  align-items-center " style="margin-left: 300px;padding-top: 50px;">
+                <h2 class="text-white" style="font-size: 30px;">
+                    Rechercher Maintenancier
+                </h2>
+                <div class="d-flex " style="margin-left: 100px; ">
+                    <select name="ville" id="" class="form-select me-4" style="width: 200px;">
+                        <option value="">Ville</option>
+                        <option value=""></option>
+                    </select>
+                    <select name="quartier" id="" class="form-select" style="width: 200px;margin-right: 70px;">
+                        <option value="">Quartier</option>
+                        <option value=""></option>
+                    </select>
+                </div>
+
+
+
+
+
+
+
+
+
+
+header{
+  height: 150px; 
+  width: 1524px; 
+    background-color:white;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+
+}
+.logo {
+    height: 240px; 
+    width: 200px; 
+    margin-right: 200px; 
+}
+
+.navbar {
+    display: inline-block;
+    text-align: right;
+    margin-left: 100px;
+    
+}
+.navbar li
+{
+    display: inline-block;
+    margin-right: 70px;
+}
+.navbar a
+{
+    font-size: 1.2em;
+    color: black;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+.navbar a:hover
+{
+    color:rgb(0, 0, 0);
+    border-bottom: 3px solid;
+    color: 004AAD;
+}
+
+.background-image {
+    background-image: url('img/bg.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative;
+}
+h1{
+    padding-top: 30px;
+    text-align: center;
+  font-family: arvo;
+ 
+}
+.recherche{
+    width: 1450px;
+    height: 150px;
+background: rgba(0, 0, 255, 0.377);
+margin-left: 30px;
+border-radius: 20px;
+
+top: 0;
+left: 0;
+
+}
+
+.bi{
+    margin-left: 20px; 
+    color: #fff;
+}
+.par{
+    padding-top: 110px;
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-right: 50px;
+
+}
+.geolocalisation{
+    background-color:004AAD ;
+}
+
+.img{
+    border-radius: 20px;
+}
+.image-container { 
+    position: relative;
+     display: inline-block;
+    
+     }
+     .overlay { 
+        position: absolute;
+         top: 0; 
+         left: 0; 
+         width: 400; 
+         height: 300; 
+         background-color: rgba(0, 0, 0, 0.6); 
+         display: flex; 
+         justify-content: center; 
+         align-items: center; opacity: 0; 
+         transition: opacity 0.3s ease; 
+         border-radius: 20px;
+         margin-left: 40px;
+        } 
+     
+        .image-container:hover .overlay { 
+            opacity: 1; 
+        } 
+        .content { 
+            color: white;
+             text-align: center;
+             }
+             .content h5{
+                font-size: 55px;
+             }
+             .image-container .img{
+                border-radius: 20px;
+                margin-left: 40px;
+             }
+             .row .images{
+                padding-bottom: 50px;
+             }
+             .section{
+                width: 100%;
+                height: 250px;
+                background-color: rgba(203, 198, 198, 0.995);
+                margin-top: 100px;
+                margin-bottom: 100px;
+             }
+             footer{
+                background-color: 004AAD ;
+                width: 100%;
+                height: 200px;
+             }
+             .social-icons {
+                list-style-type: none;
+                padding: 0;
+                margin-left: 91px;
+              }
+              
+              .social-icons li {
+                display: inline-block;
+                
+                margin-left: -10px;
+              }
+              
+              .social-icons li a {
+                color: #f3ebeb; /* Couleur par défaut */
+                font-size: 19px;
+                text-decoration: none;
+                transition: color 0.3s ease; /* Transition de couleur au survol */
+               
+              }
+              
+              .social-icons li a:hover {
+                color: #000; /* Couleur au survol */
+              }
+              
+              .social-icons .bi-facebook:hover {
+                color: #3b5998; /* Couleur Facebook */
+              }
+              
+              .social-icons .bi-twitter:hover {
+                color: #1da1f2; /* Couleur Twitter */
+              }
+              
+              .social-icons .bi-instagram:hover {
+                color: #c13584; /* Couleur Instagram */
+              }
+              
+              .social-icons .bi-youtube:hover {
+                color: #ff0000; /* Couleur YouTube */
+              }
