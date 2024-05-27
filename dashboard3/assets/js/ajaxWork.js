@@ -213,7 +213,7 @@ function categoryDelete(id){
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Category Successfully deleted');
+            alert('Category Successfully ');
             $('form').trigger('reset');
             showCategory();
         }
@@ -242,7 +242,7 @@ function variationDelete(id){
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Successfully deleted');
+            alert('Suppression reussit');
             $('form').trigger('reset');
             showProductSizes();
         }

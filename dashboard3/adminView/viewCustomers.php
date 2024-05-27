@@ -16,7 +16,6 @@ try {
       <tr>
         <th class="text-center">Nom</th>
         <th class="text-center">Email</th>
-        <th class="text-center">Mot de passe</th>
       </tr>
     </thead>
     <?php
@@ -28,7 +27,6 @@ try {
     <tr>
         <td><?= $row["nom"] ?></td>
         <td><?= $row["email"] ?></td>
-        <td><?= $row["password"] ?></td>
         <td>
     <?php
            

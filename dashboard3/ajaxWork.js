@@ -239,7 +239,7 @@ function sizeDelete(id){
 function variationDelete(id){
     $.ajax({
         url:"./controller/deleteVariationController.php",
-        method:"post",
+        method:"get",
         data:{record:id},
         success:function(data){
             alert('Successfully deleted');
