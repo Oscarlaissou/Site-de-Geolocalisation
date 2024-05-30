@@ -3,7 +3,7 @@ session_start();
 
 // Détruire la session
 session_destroy();
-
+session_unset();
 // Supprimer le cookie d'e-mail
 setcookie('email', '', time() - 3600); // Expiration immédiate
 

@@ -15,7 +15,7 @@ if (isset($_POST['valider'])) {
 
         if ($req->rowCount() > 0) {
             $_SESSION['email'] = $email; 
-            header("location:../dashboard3/index.php"); 
+            header("location:../Dashb/index.php"); 
 
         } else {
           echo "<script>
