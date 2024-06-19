@@ -9,8 +9,14 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 </head>
 <body>
    <input type="checkbox" id="menu-toggle">
@@ -48,51 +54,65 @@ try {
 ?>
 <div>
   <h2>Maintenancier</h2>
-  <table class="table">
+  <table id="maintenancierTable" class="table table-striped table-bordered" style="width:100%">
     <thead>
-      <tr>
-      <th class="text-center">Id</th>
-        <th class="text-center">Nom & Prenom</th>
-        <th class="text-center">Nom de la structure</th>
-        <th class="text-center">Numero de Telephone</th>
-        <th class="text-center">Ville</th>
-        <th class="text-center">Quartier</th>
-        <th class="text-center">Longitude</th>
-        <th class="text-center">Lattitude</th>
-        <th class="text-center">Description</th>
-        <th class="text-center" colspan="2">Actions</th>
-      </tr>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Nom & Prenom</th>
+            <th class="text-center">Nom de la structure</th>
+            <th class="text-center">Numero de Telephone</th>
+            <th class="text-center">Ville</th>
+            <th class="text-center">Quartier</th>
+            <th class="text-center">Longitude</th>
+            <th class="text-center">Lattitude</th>
+            <th class="text-center">Description</th>
+            <th class="text-center" colspan="2">Actions</th>
+        </tr>
     </thead>
     <tbody>
-      <?php
-        $sql = "SELECT * FROM maintenancier";
-        $result = $bdd->query($sql);
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      ?>
-      <tr>
-      <td><?= $row["id"] ?></td>
-        <td><?= $row["nom"] ?></td>
-        <td><?= $row["structure"] ?></td>
-        <td><?= $row["numero"] ?></td>
-        <td><?= $row["ville"] ?></td>
-        <td><?= $row["quartier"] ?></td>
-        <td><?= $row["longitude"] ?></td>
-        <td><?= $row["lattitude"] ?></td>
-        <td><?= $row["description"] ?></td>
-        <td>
-          <a href="controller/modifier.php?id=<?= $row['id'] ?>" class="btn btn-primary"  style="height:40px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-</svg></a>
-  <a href="controller/supprimer.php?id=<?= $row['id'] ?>"class="btn btn-danger" style="height:40px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-</svg></a>
-        </td>
-      </tr>
-      <?php
-        }
-
-      ?>
+    </tbody>
+</table>
+<script>
+$(document).ready(function() {
+    $('#maintenancierTable').DataTable({
+        ajax: {
+            url: 'data2.php', // Remplacez par l'URL de votre script PHP
+            type: 'POST',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'id' },
+            { data: 'nom' },
+            { data: 'structure' },
+            { data: 'numero' },
+            { data: 'ville' },
+            { data: 'quartier' },
+            { data: 'longitude' },
+            { data: 'lattitude' },
+            { data: 'description' },
+            { data: null, defaultContent: '', title: "Actions", className: "text-center", orderable: false, searchable: false },
+        ],
+        responsive: true,
+        dom: '<"top"i>rt<"bottom"flp><"clear">',
+        order: [[ 0, "asc" ]], // Tri inverse par Id pour afficher les plus récents en premier
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10/i18n/French.json"
+        },
+        columnDefs: [{
+            targets: -1, // Cible la dernière colonne pour les actions
+            render: function(data, type, row) {
+                return `
+                    <a href="controller/modifier.php?id=${row.id}" class="btn btn-primary" style="height:40px">
+                    <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="controller/supprimer.php?id=${row.id}" class="btn btn-danger" style="height:40px">
+                    <i class="bi bi-trash"></i>
+                    </a>`;
+            }
+        }]
+    });
+});
+</script>
     </tbody>
   </table>
 
@@ -164,6 +184,9 @@ try {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
 </html>

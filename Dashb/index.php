@@ -10,7 +10,8 @@ if (isset($_SESSION['email'])) {
     <title>Modern Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styl.css">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 <body>
@@ -49,7 +50,7 @@ if (isset($_SESSION['email'])) {
 <div id="main-content" class="container allContent-section py-4">
     <div class="row">
         <!-- Colonne pour Total utilisateurs -->
-        <div class="col-sm-3">
+        <div class="col">
             <div class="card" style="background-color:#004AAD;">
                 <i class="fa fa-users mb-2" style="font-size: 70px;"></i>
                 <h4 style="color:white; font-size: 27px;">Total utilisateurs</h4>
@@ -83,57 +84,60 @@ if (isset($_SESSION['email'])) {
              </svg></h5>
               
             </div>
-           
-            </div>
-            <?php     
-  
-  $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-  
-  try {
-     // $bdd = new PDO($sql, $username, $password, $dsn_Options);
-     $bdd = new PDO('mysql:dbname=geolocalisation;host=localhost;port=3306;charset=utf8', 'root', '');
-  } catch (PDOException $error) {
-      echo "Connection echouer" . $error->getMessage();
-  }
-  ?>
-  <div>
-   
-    <table class="table">
-      <thead>
-      <h2>Maintenancier les plus recents</h2>
-        <tr>
-        
-          <th class="text-center">Nom & Prenom</th>
-          <th class="text-center">Nom de la structure</th>
-          <th class="text-center">Numero de Telephone</th>
-          <th class="text-center">Ville</th>
-          <th class="text-center">Quartier</th>
-          <th class="text-center">Longitude</th>
-          <th class="text-center">Lattitude</th>
-          <th class="text-center">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-         $sql = "SELECT * FROM maintenancier ORDER BY id DESC";
-          $result = $bdd->query($sql);
-          while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-        <tr>
-    
-          <td><?= $row["nom"] ?></td>
-          <td><?= $row["structure"] ?></td>
-          <td><?= $row["numero"] ?></td>
-          <td><?= $row["ville"] ?></td>
-          <td><?= $row["quartier"] ?></td>
-          <td><?= $row["longitude"] ?></td>
-          <td><?= $row["lattitude"] ?></td>
-          <td><?= $row["description"] ?></td>
-        </tr>
-        <?php
-          }
-  
-        ?>
+
+  <h2>Maintenancier les plus recents</h2>
+      <div class="container mt-5">
+    <table id="maintenancierTable" class="table display" style="width:100%">
+        <thead>
+            <tr>
+                <th class="text-center">Nom & Prenom</th>
+                <th class="text-center">Nom de la structure</th>
+                <th class="text-center">Numero de Telephone</th>
+                <th class="text-center">Ville</th>
+                <th class="text-center">Quartier</th>
+                <th class="text-center">Longitude</th>
+                <th class="text-center">Latitude</th>
+                <th class="text-center">Description</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+      <!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#maintenancierTable').DataTable({
+        ajax: {
+            url: 'data1.php', // Remplacez par l'URL de votre script PHP
+            type: 'POST',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'nom' },
+            { data: 'structure' },
+            { data: 'numero' },
+            { data: 'ville' },
+            { data: 'quartier' },
+            { data: 'longitude' },
+            { data: 'lattitude' },
+            { data: 'description' }
+        ],
+        responsive: true,
+        dom: '<"top"i>rt<"bottom"flp><"clear">',
+        order: [[ 1, "asc" ]], // Tri inverse par nom pour afficher les plus récents en premier
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10/i18n/French.json"
+        }
+    });
+});
+</script>
       </tbody>
     </table>
   

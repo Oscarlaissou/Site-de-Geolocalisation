@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="styl.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
    <input type="checkbox" id="menu-toggle">
@@ -48,30 +51,18 @@ try {
 ?>
 <div  >
   <h2>Utilisateurs</h2>
-  <table class="table ">
-    <thead>
-      <tr>
-        <th class="text-center">Nom</th>
-        <th class="text-center">Email</th>
-        <th class="text-center">Role</th>
-      </tr>
-    </thead>
-    <?php
-        $sql = "SELECT * FROM utilisateurs";
-        $result = $bdd->query($sql);
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      ?>
-    <tr>
-    <tr>
-        <td><?= $row["nom"] ?></td>
-        <td><?= $row["email"] ?></td>
-        <td><?= $row["role"] ?></td>
-        <td>
-    <?php
-           
-        }
-
-    ?>
+  <div class="container mt-5">
+    <table id="example" class="table display" style="width:100%">
+        <thead>
+            <tr>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Role</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+   
   </table>
 
   <!-- <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -82,6 +73,37 @@ try {
          </main>
     
     </div>
+    <!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+        ajax: {
+            url: 'data.php', // Replace with your PHP script URL
+            type: 'POST',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'nom' },
+            { data: 'email' },
+            { data: 'role' }
+        ],
+        responsive: true,
+        dom: '<"top"i>rt<"top"flp><"clear">',
+        order: [[ 0, "asc" ]],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10/i18n/French.json"
+        }
+    });
+});
+</script>
     <!-- <script src="js/bootstrap.bundle.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 </body>
