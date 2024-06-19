@@ -80,6 +80,8 @@ $ville=$data['ville']?? '';
 $quartier=$data['quartier']?? '';
 $longitude = $data['longitude']?? '';
 $lattitude = $data['lattitude']?? '';
+$description=$data['description']?? '';
+
 ?>
 <!-- Modal pour afficher et modifier les données -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -124,6 +126,10 @@ $lattitude = $data['lattitude']?? '';
                 <th scope="row">Latitude</th>
                 <td><input type="text" name="lattitude" value="<?php echo htmlspecialchars($lattitude);?>" required></td>
               </tr>
+              <tr>
+                <th scope="row">Description</th>
+                <td><input type="text" name="description" value="<?php echo htmlspecialchars($description);?>" required></td>
+              </tr>
             </tbody>
           </table>
           <button type="submit" name="submit" class="btn btn-primary mt-3">Sauvegarder Modifications</button>
@@ -167,12 +173,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quartier=$_POST['quartier'];
     $longitude = $_POST['longitude'];
     $lattitude = $_POST['lattitude'];
+    $description=$_POST['description'];
+
  
    
     try {
-        $updateQuery = "UPDATE maintenancier SET nom=?, structure=?, numero=?, ville=?, quartier=?, longitude=?, lattitude=? WHERE id=?";
+        $updateQuery = "UPDATE maintenancier SET nom=?, structure=?, numero=?, ville=?, quartier=?, longitude=?, lattitude=? , description=? WHERE id=?";
         $stmt = $bdd->prepare($updateQuery);
-        $stmt->execute([$nom, $structure, $numero, $ville, $quartier, $longitude, $lattitude, $id]);
+        $stmt->execute([$nom, $structure, $numero, $ville, $quartier, $longitude, $lattitude, $description, $id]);
 
         // echo "Modification réussie!";
        echo '<meta http-equiv="refresh" content="0; URL=../mainten.php">';

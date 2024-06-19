@@ -4,15 +4,16 @@ $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
 $motDePasse = ($_POST['password']);
+$role = ($_POST['role']);
 
 try {
     $bdd = new PDO('mysql:dbname=geolocalisation;host=localhost;port=3306;charset=utf8', 'root', '');
     // Préparation de la requête avec des paramètres nommés pour éviter les injections SQL
-    $req = "INSERT INTO utilisateurs (`nom`, `prenom`, `email`, `password`) VALUES (:nom, :prenom, :email, :password)";
+    $req = "INSERT INTO utilisateurs (`nom`, `prenom`, `email`, `password` ,`role`) VALUES (:nom, :prenom, :email, :password, :role)";
     $stmt = $bdd->prepare($req);
 
     // Exécution de la requête avec les paramètres
-    $stmt->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':password' => $motDePasse]);
+    $stmt->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':password' => $motDePasse, ':role' => $role]);
 
     // Vérification du succès de l'insertion
     if ($stmt->rowCount() > 0) {

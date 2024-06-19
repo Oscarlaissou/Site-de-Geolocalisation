@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +32,33 @@
 
    </style>
 </head>
+<?php
+$dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+try {
+    $bdd = new PDO('mysql:dbname=geolocalisation;host=localhost;port=3306;charset=utf8', 'root', '');
+} catch (PDOException $error) {
+    echo "Connection échouer ". $error->getMessage();
+}
+$villes = array(); // Tableau vide pour stocker les villes
+$sql1 = "SELECT DISTINCT ville FROM maintenancier ";
+$stmt1 = $bdd->prepare($sql1);
 
+$stmt1->execute();
+while ($donnees1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+    $villes[] = $donnees1;
+}
+$quartiers = array(); // Tableau vide pour stocker les villes
+$sql2 = "SELECT  DISTINCT quartier FROM maintenancier ";
+$stmt2 = $bdd->prepare($sql2);
+
+$stmt2->execute();
+while ($donnees2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+    $quartiers[] = $donnees2;
+}
+
+
+
+?>
 <body>
 
   <header>
@@ -52,14 +81,22 @@
                         <a class="nav-link fw-bold" href="#" aria-label="À propos">A PROPOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="Maintenancier/maintenancier.html" aria-label="Maintenancer">MAINTENANCIER</a>
+                        <a class="nav-link fw-bold" href="Maintenancier/maintenanciern.php" aria-label="Maintenancer">MAINTENANCIER</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="#" aria-label="Suggestions">SUGGESTIONS</a>
                     </li>
                     <li class="nav-item">
                         <!-- Bouton de connexion stylisé différemment -->
-                        <a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>
+                        <!-- <a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a> -->
+                        <?php
+                        if (isset($_SESSION['email'])) {
+                           echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
+                        } else {
+                            echo'<a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>';
+
+                        }
+                        ?>
                     </li>
                 </ul>
             </div>
@@ -90,17 +127,19 @@
             <div class="d-flex align-items-center justify-content-center flex-wrap" style="padding: 20px;">
                 <h2 class="text-white" style="font-size: 30px; text-align: center; margin-bottom: 20px;margin-right: 10px;">Rechercher Maintenancier</h2>
                 <div class="d-flex flex-wrap justify-content-center">
-                    <select name="ville" id="ville" class="form-select me-4 mb-3" style="width: 200px; margin-left: 15px;">
-                        <option value="">Ville</option>
-                        <option value="douala">douala</option>
-                        <option value="yaounde">yaounde</option>
-                    </select>
-                    <select name="quartier" id="quartier" class="form-select mb-3" style="width: 200px;margin-left: -10px; ">
-                        <option value="">Quartier</option>
-                        <option value="bonanjo">bonanjo</option>
-                        <option value="bastos">bastos</option>
-                        <option value="bepanda">Bepanda</option>
-                    </select>
+                    <select name="ville" id="ville" class="form-select me-4 mb-3" style="width: 220px; margin-left: 15px;">
+                    <option value="">Sélectionnez une ville</option>
+                    <?php foreach ($villes as $ville):?>
+                        <option value="<?= htmlspecialchars($ville['ville'])?>"><?= htmlspecialchars($ville['ville'])?></option>
+                         <?php endforeach;?>
+                        </select>
+
+                    <select name="quartier" id="quartier" class="form-select mb-3" style="width: 220px;margin-left: -10px; ">
+                    <option   value="">Sélectionnez un quartier</option>
+                    <?php foreach ($quartiers as $quartier):?>
+                        <option value="<?= htmlspecialchars($quartier['quartier'])?>"><?= htmlspecialchars($quartier['quartier'])?></option>
+                         <?php endforeach;?>
+                        </select>
                 </div>
                 <div class="d-flex justify-content-center">
                 <div class="search-container">
@@ -234,6 +273,9 @@
             </div>
         </div>
     </div>
+    <script>
+        
+    </script>
 </footer>
 <script src="jquery/jquery-3.7.1.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>

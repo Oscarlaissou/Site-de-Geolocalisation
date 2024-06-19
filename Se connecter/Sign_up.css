@@ -120,7 +120,8 @@ body::before {
   input[type="prénom"],
   input[type="localisation"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="role"] {
     border: 1px solid #004AAD ;
     padding: 3px;
     border-radius: 6px;
@@ -198,7 +199,8 @@ margin-top: 0px;
     input[type="prénom"],
     input[type="localisation"],
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="role"]  {
         border: 1px solid #ddd;
         padding: 1px;
         border-radius: 6px;
@@ -295,7 +297,8 @@ margin-top: 0px;
     input[type="prénom"],
     input[type="localisation"],
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="role"]  {
       width: 170px;
 
   
@@ -331,7 +334,8 @@ margin-top: 0px;
   input[type="prénom"],
   input[type="localisation"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="role"]  {
     width: 105px;
     font-size: 6px;
 
@@ -441,7 +445,8 @@ margin-top: 0px;
   input[type="prénom"],
   input[type="localisation"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"] ,
+  input[type="role"] {
     width: 105px;
     font-size: 6px;
 
@@ -474,7 +479,8 @@ margin-top: 0px;
   input[type="prénom"],
   input[type="localisation"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="role"]  {
     width: 80px;
     font-size: 6px;
 

@@ -6,8 +6,14 @@
     padding: 8px;
     flex-direction: column;
     position: relative;
-
+    
+    background-color: rgba(10, 132, 207, 0.539);
 }
+.container-fluid{
+    max-width: 800px;
+    border-radius: 10px;
+}
+
 
 .cont {
     width: 100%;
@@ -80,13 +86,13 @@ height: 40px;
 border-radius: 10px;
 gap: 8px;
 border-color: #ffffff;
-background-color: #004AAD;
+background-color: #0d9e36;
 font-family: Cabin;
 font-size: 20px;
 font-weight: 500;
 line-height: 24px;
 letter-spacing: 0em;
-box-shadow: 2px 2px 4px 4px rgba(4, 4, 255, 0.413);
+/* box-shadow: 2px 2px 4px 4px rgba(43, 207, 10, 0.747); */
 position: relative;
 
 
@@ -145,15 +151,15 @@ svg{
     position: relative;
 
    }
-   
+/*    
    body{
     background-image: url('close-up-researcher-working-with-lamp.jpg'); 
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-}
+} */
 
-body::before {
+/* body::before {
     content: "";
     position: absolute;
     top: 0;
@@ -165,7 +171,7 @@ body::before {
     background-size: 100% 100%;
     pointer-events: none; 
    
-  }
+  } */
 
 .pos{
     margin-left: 200px;

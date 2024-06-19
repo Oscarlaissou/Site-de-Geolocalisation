@@ -38,14 +38,21 @@
                         <a class="nav-link fw-bold" href="#" aria-label="À propos">A PROPOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="Maintenancier/maintenancier.html" aria-label="Maintenancer">MAINTENANCIER</a>
+                        <a class="nav-link fw-bold" href="Maintenancier/maintenanciern.html" aria-label="Maintenancer">MAINTENANCIER</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="#" aria-label="Suggestions">SUGGESTIONS</a>
                     </li>
                     <li class="nav-item">
                         <!-- Bouton de connexion stylisé différemment -->
-                        <a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>
+                        <?php
+                        if (isset($_SESSION['email'])) {
+                           echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
+                        } else {
+                            echo'<a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>';
+
+                        }
+                        ?>
                     </li>
                 </ul>
             </div>

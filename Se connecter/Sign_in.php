@@ -14,8 +14,18 @@ if (isset($_POST['valider'])) {
         $req->execute(array($email, $motDePasse));
 
         if ($req->rowCount() > 0) {
-            $_SESSION['email'] = $email; 
+          while($row = $req->fetch(PDO::FETCH_ASSOC)) {
+            $_SESSION['email'] = $email;
+            $_SESSION['role'] = $row['role'];  
+           
+          }
+          if ($_SESSION['role'] == 'admin'){
             header("location:../Dashb/index.php"); 
+          }else{
+            header("location:../Accueil.php"); 
+
+          }
+         
 
         } else {
           echo "<script>

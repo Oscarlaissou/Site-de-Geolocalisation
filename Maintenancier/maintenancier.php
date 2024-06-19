@@ -1,5 +1,10 @@
+
+<?php
+session_start();
+if (isset($_SESSION['email'])) {
+   ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +42,14 @@
                     <input class=" numero" type="number"  placeholder="237 693 96 92 24" name="numero" id="numero" required>
                 </div>
                 <div class="w-596px h-83px p-2">
+                    <div class="w-612px h-99px p-2">
+                        <div><label for=""> Ville</label></div>
+                        <input class=" w-100 " type="text" placeholder="ville" name="ville" id="" required>
+                    </div>
+                    <div class="w-612px h-99px p-2">
+                        <div><label for=""> quartier</label></div>
+                        <input class=" w-100 " type="text" placeholder="quartier" name="quartier" id="" required>
+                    </div>
                     <div class="row ">
                         <div> <label for="" class="pos">Position Géographique</label></div>
                         <div class="col container1">
@@ -48,6 +61,10 @@
                             <div><label for="" style="margin-left: 50px;">Lattitude</label></div>
                           
                           <input class=" w-25 " type="text" placeholder="123" name="lattitude" id="lattitude" required style="margin-left: 50px;">
+                        </div>
+                        <div class="w-612px h-99px p-2">
+                            <div><label for=""> Description</label></div>
+                            <input class=" w-100 " type="text" placeholder="description" name="description" id="" required>
                         </div>
                      </div>
                      <div class="row">
@@ -86,3 +103,9 @@
     <script src="maintenancier.js"></script>
 </body>
 </html>
+<?php
+} else {
+    header("Location:../Se connecter/Sign_in.html");
+}
+?>
+

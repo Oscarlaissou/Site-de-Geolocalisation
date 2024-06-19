@@ -53,6 +53,7 @@ try {
       <tr>
         <th class="text-center">Nom</th>
         <th class="text-center">Email</th>
+        <th class="text-center">Role</th>
       </tr>
     </thead>
     <?php
@@ -64,6 +65,7 @@ try {
     <tr>
         <td><?= $row["nom"] ?></td>
         <td><?= $row["email"] ?></td>
+        <td><?= $row["role"] ?></td>
         <td>
     <?php
            
