@@ -11,7 +11,20 @@ session_start();
     <link href="bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
    <link href="assets/boxicons/css/boxicons.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
    <style>
+       #map {
+            height: 500px;
+            width: 100%;
+            margin-top: 50px;
+        }
     .btn-primary{
     background-color: 004AAD;
     color: #fff;
@@ -90,12 +103,22 @@ while ($donnees2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                         <!-- Bouton de connexion stylisé différemment -->
                         <!-- <a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a> -->
                         <?php
-                        if (isset($_SESSION['email'])) {
-                           echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
-                        } else {
-                            echo'<a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>';
-
+                    
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == "admin") {
+                            echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
+                        }else {
+                            echo'<a href="#"><button class="btn btn-primary nav-btn" aria-label="Se connecter">'.$_SESSION['email'].'</button></a>';
+                            echo '<a href="Se connecter/logout1.php" style="text-decoration:none;">';
+echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right text-black" viewBox="0 0 16 16">';
+echo '<path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1.5-.5h8a.5.5 0 0 1.5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>';
+echo '<path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0.708.708z"/>';
+echo '</svg></a></div>';
                         }
+                    } else {
+                        echo'<a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>';
+
+                    }
                         ?>
                     </li>
                 </ul>
@@ -181,9 +204,47 @@ while ($donnees2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     <h1 class="text-center" style="color: #004AAD; margin-top: 30px; margin-bottom: 40px;">GEOLOCALISATION</h1>
                 </div>
             </div>
-            <div class="row geolocalisation ">
-                <div class="col-12 col-md-6 offset-md-3">
-                    <img src="img/geo.jpeg" alt="" class=" img-fluid " style="margin-top: 20px;width:500px; height: 330px;">
+            <div class="row geolocalisation " style="height:500px ;width:1350px" >
+                <!-- <div class="col-12 col-md-6 offset-md-3" > -->
+                    <!-- <img src="img/geo.jpeg" alt="" class=" img-fluid " style="margin-top: 20px;width:500px; height: 330px;"> -->
+                    <section>
+                    <div id="map" style="height: 420px; width:1330px;" ></div>
+
+                    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialiser la carte sur le Cameroun
+    var map = L.map('map');
+
+    // Ajouter le fond de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Fonction pour récupérer les données des maintenanciers
+    function fetchMaintainersData(callback) {
+        fetch('map.php') // Remplacez par le chemin vers votre fichier PHP
+        .then(response => response.json())
+        .then(data => callback(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Ajouter les marqueurs sur la carte une fois les données récupérées
+    fetchMaintainersData(function(locations) {
+        var bounds = L.latLngBounds(); // Commencez par un objet vide pour les limites
+        locations.forEach(function(location) {
+            var marker = L.marker([location.lattitude, location.longitude])
+            .addTo(map)
+            .bindPopup(location.nom); // Assurez-vous que le nom est disponible dans les données
+
+            // Étendez les limites pour inclure le nouveau marqueur
+            bounds.extend(marker.getLatLng());
+        });
+
+        // Ajustez la vue de la carte pour se concentrer sur les marqueurs
+        map.fitBounds(bounds, { padding: [20, 20] });    });
+});
+</script>
+
                 </div>
             </div>
         </div>
@@ -242,6 +303,7 @@ while ($donnees2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
         </div>
     </section>
   </main>
+  
   <footer>
     <div class="container">
         <div class="row flex-column flex-md-row">

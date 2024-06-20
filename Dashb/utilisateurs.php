@@ -55,6 +55,7 @@ try {
     <table id="example" class="table display" style="width:100%">
         <thead>
             <tr>
+                <th class="text-center">Id</t>
                 <th class="text-center">Nom</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Role</th>
@@ -91,13 +92,14 @@ $(document).ready(function() {
             dataSrc: ''
         },
         columns: [
+          { data: 'id' },
             { data: 'nom' },
             { data: 'email' },
             { data: 'role' }
         ],
         responsive: true,
         dom: '<"top"i>rt<"top"flp><"clear">',
-        order: [[ 0, "asc" ]],
+        // order: [[ 1, "asc" ]],
         language: {
             url: "//cdn.datatables.net/plug-ins/1.10/i18n/French.json"
         }

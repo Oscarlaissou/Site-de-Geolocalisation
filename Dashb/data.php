@@ -6,7 +6,7 @@ try {
     echo "Connection failed". $error->getMessage();
 }
 
-$sql = "SELECT * FROM utilisateurs";
+$sql = "SELECT * FROM utilisateurs ORDER BY id asc";
 $result = $bdd->query($sql);
 
 $data = array();

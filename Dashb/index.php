@@ -90,6 +90,7 @@ if (isset($_SESSION['email'])) {
     <table id="maintenancierTable" class="table display" style="width:100%">
         <thead>
             <tr>
+                <th class="text-center">id</t>
                 <th class="text-center">Nom & Prenom</th>
                 <th class="text-center">Nom de la structure</th>
                 <th class="text-center">Numero de Telephone</th>
@@ -120,6 +121,7 @@ $(document).ready(function() {
             dataSrc: ''
         },
         columns: [
+            { data: 'id'},
             { data: 'nom' },
             { data: 'structure' },
             { data: 'numero' },
@@ -131,7 +133,7 @@ $(document).ready(function() {
         ],
         responsive: true,
         dom: '<"top"i>rt<"bottom"flp><"clear">',
-        order: [[ 1, "asc" ]], // Tri inverse par nom pour afficher les plus récents en premier
+        order: [[0, "desc"]],// Tri inverse par nom pour afficher les plus récents en premier
         language: {
             url: "//cdn.datatables.net/plug-ins/1.10/i18n/French.json"
         }

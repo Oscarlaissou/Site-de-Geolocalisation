@@ -57,13 +57,14 @@ if (isset($_SESSION['email'])) {
           <div class="input-box">
             <span class="details">Latitude</span>
             <input type="text" class="form-control" id="latitude" placeholder="123" name="latitude" required>
+            <label>Pour obtenir la longitude et lattitude cliquez sur ce lien <a href="https://www.coordonnees-gps.fr/">Cliquez ici</a> </label>
           </div>
          
         <div class="button">
           <input type="submit" value="Ajouter" style="margin-left: 250px; width: 200px;">
         </div>
         <div class="button"   style="margin-right: 350px; width: 200px;" >
-          <input type="reset" value="Annuler">
+        <a href="../Accueil.php"><input type="button" value="Annuler"></a>
           </div>
 </div>
   </div>

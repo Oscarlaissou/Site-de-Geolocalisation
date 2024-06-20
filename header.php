@@ -47,11 +47,21 @@
                         <!-- Bouton de connexion stylisé différemment -->
                         <?php
                         if (isset($_SESSION['email'])) {
-                           echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
+                            if ($_SESSION['role'] == "admin") {
+                                echo'<a href="Dashb/index.php"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Mon compte</button></a>';
+                            }else {
+                                echo'<a href="#"><button class="btn btn-primary nav-btn" aria-label="Se connecter">'.$_SESSION['email'].'</button></a>';
+                                echo '<a href="Se connecter/logout1.php" style="text-decoration:none;">';
+                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" " class="bi bi-box-arrow-right text-black" viewBox="0 0 16 16">';
+                                echo '<path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1.5-.5h8a.5.5 0 0 1.5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>';
+                                echo '<path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0.708.708z"/>';
+                                echo '</svg></a></div>';
+                            }
                         } else {
                             echo'<a href="Se connecter/Sign_in.html"><button class="btn btn-primary nav-btn" aria-label="Se connecter">Se Connecter</button></a>';
 
                         }
+
                         ?>
                     </li>
                 </ul>

@@ -160,6 +160,8 @@ $(document).ready(function() {
               <label>Lattitude:</label>
               <input type="text" class="form-control" name="lattitude" required>
             </div>
+            <label>Pour obtenir la longitude et lattitude cliquez sur ce lien <a href="https://www.coordonnees-gps.fr/">Cliquez ici</a> </label>
+            
             <div class="form-group">
               <label>Description:</label>
               <input type="text" class="form-control" name="description" required>

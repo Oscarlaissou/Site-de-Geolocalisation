@@ -110,7 +110,7 @@ if (isset($_SESSION['email'])) {
         $stmt->bindValue(1, $ville, PDO::PARAM_STR);
         $stmt->bindValue(2, $quartier, PDO::PARAM_STR);
         $stmt->execute();
-
+        if ($stmt->rowCount() > 0) {
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $locations[] = array(
                 'lattitude' => $row['lattitude'],
@@ -122,9 +122,10 @@ if (isset($_SESSION['email'])) {
                 'quartier' => $row['quartier'],
                 'description' => $row['description']
             );
+      
        ?>
     
-       
+      
        <div class="card-container">
         <div class="card">
             <div class="card-body">
@@ -153,12 +154,24 @@ if (isset($_SESSION['email'])) {
 
             </div>
         </div>
-    <?php }?>
+        <?php
+         }
+         // À ce stade, vous pouvez continuer à traiter les résultats comme d'habitude
+     } else {
+         // Aucun résultat trouvé, affichez un message à l'utilisateur
+echo '<p style="text-align:center; font-size:30px; color:#FF0000; margin-top:100px;">Aucun maintenancier trouvé pour la ville '.$ville.' et le quartier '.$quartier.'</p>';
+
+      ?>
+    <?php }
+    
+    ?>
+    
 </div>
 </section>
 
 
     <div id="map"></div>
+    
 
 <script>
 
@@ -223,7 +236,7 @@ L.marker([<?= $location['lattitude']?>, <?= $location['longitude']?>])
    .bindPopup(`
         <strong>Nom :</strong> <?= htmlspecialchars($location['nom'])?><br>
         <strong>Structure :</strong> <?= htmlspecialchars($location['structure'])?><br>
-        <strong>Numéro :</strong><a href="https://wa.me/<?= htmlspecialchars($location['numero'])?>/?text=Salut! puis je avoir d'emple information sur vous"><?= htmlspecialchars($location['numero'])?></a> <strong>Contactez moi sur Whatsapp</strong> <br>
+        <strong>Numéro :</strong><a href="https://wa.me/<?= htmlspecialchars($location['numero'])?>/?text=Salut! puis je avoir d'amples information sur vous"><?= htmlspecialchars($location['numero'])?></a> <strong>Contactez moi sur Whatsapp</strong> <br>
         <strong>Ville :</strong> <?= htmlspecialchars($location['ville'])?><br>
         <strong>Quartier :</strong> <?= htmlspecialchars($location['quartier'])?><br>
         <strong>Description :</strong> <?= htmlspecialchars($location['description'])?>
@@ -269,6 +282,7 @@ watchLocation();
 </body>
 </html>
 <?php
+
 } else {
    
     include "header.php";
@@ -289,6 +303,7 @@ $stmt->execute();
 $count = $stmt->fetchColumn();
 $count_color = "blue";
 $count_font_size = "40px";
+
    
 echo '<p style="text-align:center; font-size:25px; margin-top:150px">Nous avons trouvé <span style="color:' . $count_color . '; font-size:' . $count_font_size . ';">' . $count . '</span> maintenanciers dans la zone sélectionnée</p>';
     echo '<p style="text-align:center; font-size:25px; margin-top:150px" >Pour avoir d\'amples informations sur le maintenancier  veillez vous connecter</p>';
@@ -296,6 +311,5 @@ echo '<p style="text-align:center; font-size:25px; margin-top:150px">Nous avons 
 }
 
 
-include "footer.php";
 ?>
 
